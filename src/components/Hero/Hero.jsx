@@ -10,7 +10,7 @@ function Hero(){
             </div>
             <div>
                 <img 
-                   src={requirre("../../assets/vibrating-headphone 1.png")}
+                   src={require("../../assets/vibrating-headphone 1.png")}
                    width={212}
                    alt="headphones"
                 />   
@@ -19,4 +19,4 @@ function Hero(){
     )
 }
 
-export default App;
+export default Hero;
