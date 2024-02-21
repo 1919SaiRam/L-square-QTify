@@ -1,9 +1,10 @@
-import React from "react";
+// import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./CarouselRightNavigation.module.css";
 import { ReactComponent as RightArrow } from "../../../assets/Group 3740.svg";
 import { useSwiper } from "swiper/react";
 
-function CurousalLeftNavigation () {
+function CarouselRightNavigation () {
     const swiper = useSwiper();
     const [isEnd, setIsEnd] = useState(swiper.isEnd);
 
@@ -11,13 +12,13 @@ function CurousalLeftNavigation () {
        swiper.on("slideChange", function(){
           setIsEnd(swiper.isEnd);
     })
-}, []);
+}, [swiper]);
 return (
-    <div className={styles.RightNavigation}>
-        {!isEnd &&  <RightArrow onClick={() => swiper.slidePrew()} />}
+    <div className={styles.rightNavigation}>
+        {!isEnd &&  <RightArrow onClick={() => swiper.slideNext()} />}
     </div>
 )
 
 }
 
-export default CurousalRightNavigation;
+export default CarouselRightNavigation;

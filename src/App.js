@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import './App.css';
 import { Outlet } from "react-router-dom"; 
-import Hero from './components/Hero/Hero';
+// import Hero from './components/Hero/Hero';
 import Navbar from "./components/Navbar/Navbar";
 import { fetchNewAlbums, fetchSongs, fetchTopAlbums } from "./api/api";
 import { useEffect, useState } from "react";
@@ -51,7 +51,7 @@ function App() {
          
          <Outlet context={{ data: {topAlbums, newAlbums, songs}}} />
 
-         <Hero/>
+         {/* <Hero/> */}
       </div>       
       </>
   );

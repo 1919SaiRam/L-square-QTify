@@ -1,20 +1,21 @@
-import React from "react";
+// import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./CarouselLeftNavigation.module.css";
 import { ReactComponent as LeftArrow } from "../../../assets/Group 3741.svg";
 import { useSwiper } from "swiper/react";
 
 function CurousalLeftNavigation () {
     const swiper = useSwiper();
-    const [isBegining, setIsBegining] = useState(swiper.isBeginning);
+    const [isBeginning, setIsBeginning] = useState(swiper.isBeginning);
 
     useEffect(() => {
        swiper.on("slideChange", function(){
-          setIsBegining(swiper.isBegining);
+          setIsBeginning(swiper.isBeginning);
     })
-}, []);
+}, [swiper]);
 return (
     <div className={styles.leftNavigation}>
-        {!isBegining &&  <LeftArrow onClick={() => swiper.slidePrew()} />}
+        {!isBeginning &&  <LeftArrow onClick={() => swiper.slidePrev()} />}
     </div>
 )
 

@@ -20,12 +20,6 @@ function Card({data, type}) {
                               size="small" 
                               className={styles.Chip}
                             />
-
-                            {/* <div className={styles.banner}>
-                                <div className={styles.pill}>
-                                   <p>{follows} Follows</p>
-                                </div>
-                            </div> */}
                         </div>
                         <div className={styles.titleWrapper}>
                             <p>{title}</p>

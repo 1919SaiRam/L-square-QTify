@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-// import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 
 // import reportWebVitals from './reportWebVitals';
 
@@ -15,17 +16,20 @@ const router = createBrowserRouter([
     children: [
       {
           path: "/",
-          element: <pagesHomePage />
+          element: <HomePage />
       },
      
     ]
   }
 ])
 
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+// <RouterProvider router={router} />
+// );
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-<RouterProvider router={router} />
-);
+root.render(<RouterProvider router={router} />);
+
 
 
 

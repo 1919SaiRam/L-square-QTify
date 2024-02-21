@@ -1,8 +1,8 @@
 import React, {useEffect, useState } from "react";
-import styles from "./section.module.css";
-import { Circularprogress} from "@mui/material";
+import styles from "./Section.module.css";
+import { CircularProgress} from "@mui/material";
 import Card from "../Card/Card";
-import Carousel from "../Carousel/Carouse)";
+import Carousel from "../Carousel/Carousel";
 import Filters from "../Filters/Filters";
 // import {Filters} from "@mui/icons-material";
 
@@ -19,18 +19,22 @@ export default function Section({ title, data,filterSource, type}) {
         if(filterSource) {
             filterSource().then((response) => {
                 const { data } = response;
-                setFilters([...filters, ...data]);
+                // setFilters([...filters, ...data]);
+                setFilters((prevFilters) => [...prevFilters, ...data]); // Use functional update to avoid stale closure
             })
         }
-    }, [ ]);
-    const showFilters = filters.length > 1;
-    const cardToRender = data.filters((card) => showFilters && selectedFilterIndex !== 0 ? card.genre.key ===
-    filters[selectedFilterIndex].key : card);
+    }, [filterSource]);
 
-   
+    const showFilters = filters.length > 1;
+    // console.log(data);
+    // const cardToRender = data.filters((card) => showFilters && selectedFilterIndex !== 0 ? card.genre.key ===
+    // filters[selectedFilterIndex].key : card);
+    const cardToRender = data.filter((card) => showFilters && selectedFilterIndex !== 0 ? card.genre.key === filters[selectedFilterIndex].key : true);
+
+
     return (
         <div>
-            <div className={StyleSheet.header}>
+            <div className={styles.header}>
                 <h3>{title}</h3>
                 {!showFilters && (<h4 className={styles.toggleText} onClick={handleToggle}>(!carouselToggle ?
                 "Collapse All": "Show All")</h4>)}   
@@ -45,14 +49,14 @@ export default function Section({ title, data,filterSource, type}) {
                 </div>
             )}
             {cardToRender.length === 0 ? (
-                <Circularprogress />
+                <CircularProgress />
             ):(
                 <div className={styles.cardWrapper}>
                    {!carouselToggle ? (
                       <div className={styles.wrapper}>
-                        {cardToRender.map((ele) => {
-                            <Card data={ele} type={type} />
-                        })}
+                        {cardToRender.map((ele, index) => (
+                            <Card key={index} data={ele} type={type} />
+                        ))}
                       </div>
                    ): (
                      // Carousel logic will come here

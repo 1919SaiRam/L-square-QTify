@@ -31,7 +31,7 @@ function TabPanel(props) {
 export default function Filters( {filters, selectedFilterIndex, setSelectedFilterIndex}) {
 //   const [value, setValue] = React.useState();
 
-   function a11yProps(index) {
+   function allyProps(index) {
       return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
@@ -50,16 +50,21 @@ export default function Filters( {filters, selectedFilterIndex, setSelectedFilte
             aria-label="basic tabs example"
             TabIndicatorProps = {{
                 style: {
-                    backgroundColor: 'var(--color--primary)'
+                    backgroundColor: 'var(--color--primary)',
                 },
             }}>
             {filters.map((ele, idx) => (
-                <Tab className={styles.tab}  label={ele.label} {...allyProps(idx)} />
+                <Tab key={idx} className={styles.tab}  label={ele.label} {...allyProps(idx)} />
             ))}
             </Tabs>
-            {filters.map((ele, idx) => {
-                  <TabPanel value={ele.label} index={idx} />
-            })}
+            {filters.map((ele, idx) => (
+                  // <TabPanel key={idx} value={ele.label} index={idx} ></TabPanel>
+                  <TabPanel key={idx} value={selectedFilterIndex} index={ele.label} ></TabPanel>
+
+            ))}
+            
+
+          
     </div>
   );
 }
