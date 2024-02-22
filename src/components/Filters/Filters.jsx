@@ -27,19 +27,26 @@ function TabPanel(props) {
   );
 }
 
+function allyProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+};
+}
 
 export default function Filters( {filters, selectedFilterIndex, setSelectedFilterIndex}) {
-//   const [value, setValue] = React.useState();
+  // const [value, setValue] = React.useState();
 
-   function allyProps(index) {
-      return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-  }
+  //  function allyProps(index) {
+  //     return {
+  //       id: `simple-tab-${index}`,
+  //       'aria-controls': `simple-tabpanel-${index}`,
+  //   };
+  // }
 
   const handleChange = (event, newValue) => {
     setSelectedFilterIndex(newValue);
+    // setValue(newValue)
   };
 
   return (
@@ -50,21 +57,30 @@ export default function Filters( {filters, selectedFilterIndex, setSelectedFilte
             aria-label="basic tabs example"
             TabIndicatorProps = {{
                 style: {
-                    backgroundColor: 'var(--color--primary)',
+                    // backgroundColor: 'var(--color--primary)',
+                     backgroundColor: "#34c94b" ,
                 },
-            }}>
+            }}
+             textColor='#34c94b' className={styles.tab}
+            // className={styles.tabs} 
+            >
             {filters.map((ele, idx) => (
                 <Tab key={idx} className={styles.tab}  label={ele.label} {...allyProps(idx)} />
             ))}
             </Tabs>
-            {filters.map((ele, idx) => (
+            {/* {filters.map((ele, idx) => (
                   // <TabPanel key={idx} value={ele.label} index={idx} ></TabPanel>
                   <TabPanel key={idx} value={selectedFilterIndex} index={ele.label} ></TabPanel>
 
-            ))}
-            
+            ))} */}
+            {filters.map((ele, idx) => (
+    <TabPanel key={idx} value={selectedFilterIndex} index={idx}>
+        {ele.label}
+    </TabPanel>
+))}
 
-          
+
+
     </div>
   );
 }

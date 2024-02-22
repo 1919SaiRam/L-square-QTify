@@ -5,9 +5,11 @@ export const BACKEND_ENDPOINT = "https://qtify-backend-labs.crio.do";
 export const fetchTopAlbums = async () => {
     try{
         const response = await axios.get(`${BACKEND_ENDPOINT}/albums/top`);
+        // console.log(response.data);
         return response.data;
     }catch (e){
-         console.error(e);
+         console.log(e);
+         return null
     }
 }
 
@@ -16,7 +18,8 @@ export const fetchNewAlbums = async () => {
         const response = await axios.get(`${BACKEND_ENDPOINT}/albums/new`);
         return response.data;
     }catch (e) {
-        console.error(e);
+        console.log(e);
+        return null
     }
 }
 
@@ -26,7 +29,8 @@ export const fetchSongs = async () => {
       const response = await axios.get(`${BACKEND_ENDPOINT}/songs`);
       return response.data;
     }catch (e) {
-        console.error(e)
+        console.log(e);
+        return null
     }
 }
 
@@ -36,5 +40,6 @@ export const fetchFilters = async () => {
        return response.data;
     }catch (e){
     console.log(e);
+    return null
     }
 }

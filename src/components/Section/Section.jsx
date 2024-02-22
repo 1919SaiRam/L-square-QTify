@@ -15,15 +15,24 @@ export default function Section({ title, data,filterSource, type}) {
         setCarouselToggle((prevState) => !prevState);
 
     }
+    // useEffect(() => {
+    //     if(filterSource) {
+    //         filterSource().then((response) => {
+    //             const { data } = response;
+    //             // setFilters([...filters, ...data]);
+    //             setFilters((prevFilters) => [...prevFilters, ...data]); // Use functional update to avoid stale closure
+    //         })
+    //     }
+    // }, [filterSource]);
     useEffect(() => {
-        if(filterSource) {
+        if (filterSource) {
             filterSource().then((response) => {
                 const { data } = response;
-                // setFilters([...filters, ...data]);
-                setFilters((prevFilters) => [...prevFilters, ...data]); // Use functional update to avoid stale closure
-            })
+                setFilters((prevFilters) => [...prevFilters, ...data]);
+            });
         }
-    }, [filterSource]);
+    }, [filterSource]); // Adding filterSource as a dependency
+    
 
     const showFilters = filters.length > 1;
     // console.log(data);
@@ -36,8 +45,10 @@ export default function Section({ title, data,filterSource, type}) {
         <div>
             <div className={styles.header}>
                 <h3>{title}</h3>
-                {!showFilters && (<h4 className={styles.toggleText} onClick={handleToggle}>(!carouselToggle ?
-                "Collapse All": "Show All")</h4>)}   
+                {!showFilters && (<h4 className={styles.toggleText} onClick={handleToggle}>
+                    {/* (!carouselToggle ? "Collapse All": "Show All") */}
+                    {!carouselToggle ? "Collapse All" : "Show All"}
+                </h4>)}   
             </div>
             {showFilters && (
                 <div className={styles.filterswrapper}>

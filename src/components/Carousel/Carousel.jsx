@@ -25,15 +25,18 @@ function Carousel({ data, renderComponent }) {
             <Swiper
                 // install swiper modules
                 style={{padding: "0px 20px"}}
-                initialState={0}
+                // initialState={0}
                 modules={[Navigation]}
                 spaceBetween={40}
                 slidesPerView={"auto"}
                 allowTouchMove 
                 >
+                    {/* Custom controls */}
                     <Controls data={data} />
+                    {/* Navigation components */}
                     <CarouselLeftNavigation/>
                     <CarouselRightNavigation/>
+                     {/* Rendering swiper slides */}
                     {data.map((ele,idx) => (
                         <SwiperSlide key={idx}>{renderComponent(ele)}</SwiperSlide>
 
