@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import  { Link } from "react-router-dom";
 
 
-function Navbar({searchData}){
+function Navbar({search}){
     return (
         <nav className = {styles.navbar}>
             <Link to="/">
